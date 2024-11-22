@@ -12,11 +12,15 @@ import org.example.multiClass.util.DataSetPreparation;
 
 public class TravelClassificationExample {
 
+  public static final float FAMILY = 2f;
+  public static final float ADVENTURE = 1f;
+  public static final float JAN_MONTH = 1f;
+
   public static void main(String[] args) throws IOException {
 
     int inputsNum = 3;
     int outputsNum = 3;
-    DataSet dataSet = DataSetPreparation.getTravelAdvisorDataSet("TravelAdivsor.csv", inputsNum, outputsNum);
+    DataSet dataSet = DataSetPreparation.getTravelAdvisorDataSet("TravelAdvisor.csv", inputsNum, outputsNum);
 
     // Build multi class classifier using Deep Netts implementation of Feed Forward Network under the hood
     MultiClassClassifier<float[], String> travelClassifier = MultiClassClassifierNetwork.builder()
@@ -30,12 +34,8 @@ public class TravelClassificationExample {
                                                                                       .build();
 
     // Use classifier to predict class - returns a map with probabilities associated to possible classes
-   Map<String, Float> placesWithProbabilities = travelClassifier.classify(new float[]{2f, 1f, 1f});
+   Map<String, Float> placesWithProbabilities = travelClassifier.classify(new float[]{FAMILY,
+       ADVENTURE, JAN_MONTH});
     System.out.println(placesWithProbabilities);
-    List<Entry<String, Float>> placeWithMaxProbability = placesWithProbabilities.entrySet()
-        .stream()
-        .filter(placeWithProbability -> placeWithProbability.getValue() > 0.25f)
-        .collect(Collectors.toList());
-    placeWithMaxProbability.forEach(System.out::println);
   }
 }

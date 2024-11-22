@@ -16,15 +16,16 @@ public class CatDogTrainingModel {
 
 		// Configuration to train the model
 		ImageClassifier<BufferedImage> classifier = NeuralNetImageClassifier.builder().inputClass(BufferedImage.class)
+																																				.networkArchitecture(Paths.get("src/main/resources/catdog_arch.json"))
 																																				.imageHeight(128)
 																																				.imageWidth(128)
 																																				.labelsFile(Paths.get("src/main/resources/dataset/cats_and_dogs/training/labels.txt"))
 																																				.trainingFile(Paths.get("src/main/resources/dataset/cats_and_dogs/training/train.txt"))
-																																				.networkArchitecture(Paths.get("src/main/resources/catdog_arch.json"))
-																																				.exportModel(Paths.get("catdog.dnet"))
 																																				.maxError(0.03f)
 																																				.maxEpochs(1000)
-																																				.learningRate(0.01f).build();
+																																				.learningRate(0.01f)
+																																				.exportModel(Paths.get("catdog.dnet"))
+																																				.build();
 
 
 	}
