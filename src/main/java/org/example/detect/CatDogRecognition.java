@@ -34,7 +34,7 @@ public class CatDogRecognition {
 
 
 		// Get input image from resources and use the classifier. cat_36 dog_23
-		URL input = CatDogRecognition.class.getClassLoader().getResource("cat_36.png");
+		URL input = CatDogRecognition.class.getClassLoader().getResource("dog_23.png");
 		if (input == null) {
 			throw new IOException("Input file not found");
 		}
